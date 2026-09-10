@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOODTYPE - a dynamic text-emotion dialogue system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Quicksand:wght@300;400;500;600&family=Archivo+Black&family=Eater&family=Baloo+2:wght@400;600;700&family=Oswald:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600&family=Spectral:ital,wght@0,200;0,300;1,200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+  <!-- ============ SCENE: THE SHRINE AT THE WOOD'S EDGE ============ -->
+  <svg id="scene" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0a0e24"/>
+        <stop offset="0.55" stop-color="#16224a"/>
+        <stop offset="1" stop-color="#24365e"/>
+      </linearGradient>
+      <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#101a30"/>
+        <stop offset="1" stop-color="#070b18"/>
+      </linearGradient>
+      <radialGradient id="moonGlow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#f4ecd2" stop-opacity="0.9"/>
+        <stop offset="0.35" stop-color="#e8dcb8" stop-opacity="0.35"/>
+        <stop offset="1" stop-color="#e8dcb8" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="candleGlow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#ffcf7a" stop-opacity="0.95"/>
+        <stop offset="0.4" stop-color="#ff9d45" stop-opacity="0.35"/>
+        <stop offset="1" stop-color="#ff9d45" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1280" height="720" fill="url(#sky)"/>
+
+    <!-- stars -->
+    <g id="stars" fill="#cdd8f2">
+      <circle cx="120" cy="70" r="1.4"/><circle cx="240" cy="120" r="1"/><circle cx="360" cy="60" r="1.2"/>
+      <circle cx="520" cy="95" r="1"/><circle cx="640" cy="50" r="1.5"/><circle cx="760" cy="110" r="1"/>
+      <circle cx="900" cy="65" r="1.3"/><circle cx="1040" cy="130" r="1"/><circle cx="1160" cy="80" r="1.4"/>
+      <circle cx="180" cy="180" r="0.9"/><circle cx="470" cy="150" r="0.9"/><circle cx="820" cy="170" r="0.9"/>
+      <circle cx="1000" cy="200" r="0.8"/><circle cx="60" cy="250" r="0.9"/><circle cx="700" cy="220" r="0.8"/>
+    </g>
+
+    <!-- moon -->
+    <circle cx="1085" cy="120" r="95" fill="url(#moonGlow)"/>
+    <circle cx="1085" cy="120" r="42" fill="#efe6c8"/>
+    <circle cx="1072" cy="108" r="34" fill="#e2d5ae" opacity="0.5"/>
+
+    <!-- far ridge -->
+    <path d="M0 330 L140 250 L260 320 L400 235 L540 330 L690 255 L830 335 L970 260 L1110 335 L1280 270 L1280 720 L0 720 Z" fill="#131d3a"/>
+    <path d="M0 380 L180 320 L330 385 L520 315 L720 390 L900 330 L1100 395 L1280 340 L1280 720 L0 720 Z" fill="#0e1730"/>
+
+    <!-- pine forest silhouette: back layer -->
+    <g fill="#0b1428">
+      <path d="M40 430 l28 -90 28 90 h-20 l24 -70 -6 0 26 -60 -34 70 -8 0 30 -95 -38 95 -6 0z" transform="scale(1.4) translate(-10,60)"/>
+      <path d="M200 445 l24 -80 24 80 h-14 l20 -60 -5 0 22 -52 -29 52 -6 0 25 -82 -32 82 -5 0z"/>
+      <path d="M330 440 l26 -85 26 85 h-16 l21 -63 -5 0 23 -55 -30 55 -7 0 27 -88 -34 88 -5 0z"/>
+      <path d="M1200 445 l26 -85 26 85 h-16 l21 -63 -5 0 23 -55 -30 55 -7 0 27 -88 -34 88 -5 0z" transform="translate(-180,0)"/>
+      <path d="M1150 450 l24 -78 24 78 h-14 l19 -58 -5 0 21 -50 -28 50 -6 0 24 -79 -31 79 -5 0z" transform="translate(60,-6)"/>
+    </g>
+
+    <!-- the shrine, center-right -->
+    <g id="shrine" transform="translate(660,380)">
+      <ellipse cx="60" cy="128" rx="120" ry="16" fill="#060a14" opacity="0.7"/>
+      <path d="M-20 40 L60 -14 L140 40 Z" fill="#3d2c1e"/>
+      <path d="M-32 44 L60 -22 L152 44 L140 52 L60 -8 L-20 52 Z" fill="#57402a"/>
+      <rect x="-8" y="48" width="136" height="86" fill="#2b1f16"/>
+      <rect x="-8" y="48" width="136" height="10" fill="#463524"/>
+      <!-- door, ajar -->
+      <rect x="38" y="66" width="46" height="68" fill="#120d08"/>
+      <rect id="doorSlit" x="58" y="66" width="8" height="68" fill="#050403"/>
+      <rect x="38" y="66" width="22" height="68" fill="#3a2c1c" transform="skewY(-2)"/>
+      <!-- candle glow that flares at the end -->
+      <circle id="candleLight" cx="66" cy="96" r="8" fill="url(#candleGlow)" opacity="0.14"/>
+      <ellipse id="candleBloom" cx="66" cy="100" rx="86" ry="56" fill="url(#candleGlow)" opacity="0"/>
+      <!-- hanging lantern off -->
+      <line x1="60" y1="-22" x2="60" y2="-44" stroke="#57402a" stroke-width="4"/>
+    </g>
+
+    <!-- pine forest silhouette: front layer -->
+    <g fill="#081020">
+      <path d="M90 560 l34 -120 34 120 h-24 l30 -92 -8 0 32 -78 -42 78 -10 0 38 -125 -50 125 -8 0z"/>
+      <path d="M250 585 l30 -105 30 105 h-20 l26 -80 -7 0 28 -68 -37 68 -9 0 33 -108 -44 108 -7 0z"/>
+      <path d="M1140 570 l32 -112 32 112 h-22 l28 -86 -7 0 30 -74 -39 74 -9 0 35 -116 -46 116 -8 0z" transform="translate(-70,10)"/>
+      <path d="M1240 590 l28 -98 28 98 h-18 l24 -74 -6 0 26 -62 -34 62 -8 0 30 -100 -40 100 -6 0z" transform="translate(-30,0)"/>
+    </g>
+
+    <rect y="540" width="1280" height="180" fill="url(#ground)"/>
+
+    <!-- ground mist -->
+    <ellipse cx="380" cy="600" rx="330" ry="26" fill="#8fa4cc" opacity="0.06"/>
+    <ellipse cx="900" cy="650" rx="400" ry="30" fill="#8fa4cc" opacity="0.05"/>
+
+    <!-- foreground foliage frame -->
+    <g id="foliageTL" fill="#070f1e">
+      <path d="M30 -10 q66 60 44 150 q-72 -36 -44 -150z"/>
+      <path d="M118 -14 q58 74 22 146 q-64 -46 -22 -146z"/>
+      <path d="M196 -12 q44 66 6 118 q-52 -44 -6 -118z"/>
+      <path d="M262 -10 q30 50 -2 84 q-36 -34 2 -84z"/>
+      <path d="M-8 60 q70 26 118 6 q-48 44 -118 -6z" opacity="0.9"/>
+    </g>
+    <g id="foliageTR" fill="#070f1e">
+      <path d="M1250 -10 q-66 60 -44 150 q72 -36 44 -150z"/>
+      <path d="M1162 -14 q-58 74 -22 146 q64 -46 22 -146z"/>
+      <path d="M1084 -12 q-44 66 -6 118 q52 -44 6 -118z"/>
+      <path d="M1018 -10 q-30 50 2 84 q36 -34 -2 -84z"/>
+      <path d="M1288 60 q-70 26 -118 6 q48 44 118 -6z" opacity="0.9"/>
+    </g>
+  </svg>
+
+  <!-- ============ CHARACTERS ============ -->
+  <svg id="cast" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+
+    <!-- VESK : rust-orange warden, bronze gear halo, angular mask -->
+    <g id="char-vesk" class="char" transform="translate(150,168) scale(0.92)">
+      <g class="halo" stroke="#c9963c" fill="none">
+        <circle cx="160" cy="120" r="98" stroke-width="10"/>
+        <g fill="#c9963c" stroke="none">
+          <rect x="150" y="2" width="20" height="26"/><rect x="150" y="212" width="20" height="26"/>
+          <rect x="32" y="110" width="26" height="20"/><rect x="262" y="110" width="26" height="20"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(45 160 120)"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(90 160 120)"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(135 160 120)"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(180 160 120)"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(225 160 120)"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(270 160 120)"/>
+          <rect x="150" y="2" width="20" height="26" transform="rotate(315 160 120)"/>
+        </g>
+      </g>
+      <!-- cloak -->
+      <path d="M160 60 C 96 78 64 150 58 250 L 40 470 L 280 470 L 262 250 C 256 150 224 78 160 60 Z" fill="#b0492a"/>
+      <path d="M160 60 C 110 78 84 140 78 236 L 66 470 L 40 470 L 58 250 C 64 150 96 78 160 60 Z" fill="#8f3a20"/>
+      <!-- scarf folds -->
+      <path d="M84 330 L160 300 L236 330 L236 366 L160 336 L84 366 Z" fill="#8f3a20"/>
+      <path d="M84 396 L160 366 L236 396 L236 430 L160 400 L84 430 Z" fill="#7c3319"/>
+      <rect x="146" y="430" width="28" height="40" fill="#c9963c" opacity="0.85"/>
+      <!-- mask -->
+      <path d="M160 108 L206 158 L196 268 L160 322 L124 268 L114 158 Z" fill="#ece2ce"/>
+      <path d="M160 108 L206 158 L196 268 L160 322 Z" fill="#d9ccb2"/>
+      <path d="M132 190 L154 198 L152 208 L130 200 Z" fill="#1c130c"/>
+      <path d="M188 190 L166 198 L168 208 L190 200 Z" fill="#1c130c"/>
+      <path d="M160 226 L160 268" stroke="#b7a888" stroke-width="4"/>
+    </g>
+
+    <!-- LIO : teal warden, thin double ring halo, round mask, wide eyes -->
+    <g id="char-lio" class="char" transform="translate(880,190) scale(0.84)">
+      <g class="halo" stroke="#8fd4c9" fill="none">
+        <circle cx="160" cy="130" r="100" stroke-width="6"/>
+        <circle cx="160" cy="130" r="82" stroke-width="3" opacity="0.7"/>
+        <circle cx="160" cy="16" r="7" fill="#8fd4c9" stroke="none"/>
+        <circle cx="160" cy="244" r="7" fill="#8fd4c9" stroke="none"/>
+      </g>
+      <path d="M160 74 C 100 92 70 160 66 252 L 48 470 L 272 470 L 254 252 C 250 160 220 92 160 74 Z" fill="#2f8f86"/>
+      <path d="M160 74 C 114 92 88 148 84 240 L 72 470 L 48 470 L 66 252 C 70 160 100 92 160 74 Z" fill="#25706a"/>
+      <path d="M92 340 L160 312 L228 340 L228 372 L160 344 L92 372 Z" fill="#25706a"/>
+      <path d="M92 398 L160 372 L228 398 L228 428 L160 402 L92 428 Z" fill="#1e5b56"/>
+      <!-- round mask -->
+      <circle cx="160" cy="196" r="72" fill="#f0e9d8"/>
+      <path d="M160 124 A72 72 0 0 1 232 196 L160 196 Z" fill="#e2d8c2"/>
+      <circle cx="134" cy="192" r="15" fill="#181c1a"/>
+      <circle cx="188" cy="192" r="15" fill="#181c1a"/>
+      <circle cx="139" cy="187" r="5" fill="#f4efe2"/>
+      <circle cx="193" cy="187" r="5" fill="#f4efe2"/>
+      <path d="M148 244 q12 10 24 0" stroke="#c9bda0" stroke-width="4" fill="none"/>
+    </g>
+
+    <!-- MOTHER THISTLE : moss-green elder, antlers, bark mask -->
+    <g id="char-thistle" class="char" transform="translate(60,150) scale(0.95)">
+      <g class="halo" stroke="#7d5a34" fill="none" stroke-width="7" stroke-linecap="round">
+        <path d="M96 96 C 70 60 66 36 78 8 M78 8 C 70 26 56 30 44 24 M78 8 C 82 28 74 44 60 50"/>
+        <path d="M224 96 C 250 60 254 36 242 8 M242 8 C 250 26 264 30 276 24 M242 8 C 238 28 246 44 260 50"/>
+      </g>
+      <path d="M160 66 C 92 84 58 156 52 254 L 34 480 L 286 480 L 268 254 C 262 156 228 84 160 66 Z" fill="#57703b"/>
+      <!-- leaf scale layers -->
+      <path d="M160 66 C 104 86 76 148 70 240 L 58 480 L 34 480 L 52 254 C 58 156 92 84 160 66 Z" fill="#475d2f"/>
+      <path d="M70 300 q45 -34 90 0 q45 -34 90 0 l-6 40 q-42 -30 -84 0 q-42 -30 -84 0 z" fill="#475d2f"/>
+      <path d="M62 380 q49 -34 98 0 q49 -34 98 0 l-6 40 q-46 -30 -92 0 q-46 -30 -92 0 z" fill="#3d5228"/>
+      <!-- bark mask -->
+      <path d="M160 116 L208 170 L200 286 L160 344 L120 286 L112 170 Z" fill="#a98a5e"/>
+      <path d="M160 116 L208 170 L200 286 L160 344 Z" fill="#93753d"/>
+      <path d="M136 196 l18 -8 6 10 -18 8z" fill="#241708"/>
+      <path d="M184 196 l-18 -8 -6 10 18 8z" fill="#241708"/>
+      <circle cx="146" cy="196" r="4" fill="#ffb340"/>
+      <circle cx="174" cy="196" r="4" fill="#ffb340"/>
+      <path d="M148 250 q12 14 24 0 M140 282 q20 18 40 0" stroke="#6e5626" stroke-width="4" fill="none"/>
+    </g>
+
+    <!-- THE VISITOR : violet-black, broken halo, void face, two pale lights -->
+    <g id="char-visitor" class="char" transform="translate(860,140) scale(0.98)">
+      <g class="halo" stroke="#b9a8e6" fill="none" stroke-width="8" stroke-linecap="round" opacity="0.9">
+        <path d="M78 88 A104 104 0 0 1 196 30"/>
+        <path d="M242 66 A104 104 0 0 1 258 170"/>
+        <path d="M232 222 A104 104 0 0 1 150 250"/>
+      </g>
+      <path d="M160 62 C 94 80 60 152 54 252 L 36 486 L 284 486 L 266 252 C 260 152 226 80 160 62 Z" fill="#241a33"/>
+      <path d="M160 62 C 106 82 78 144 72 240 L 60 486 L 36 486 L 54 252 C 60 152 94 80 160 62 Z" fill="#1a1226"/>
+      <path d="M80 320 L160 292 L240 320 L240 356 L160 328 L80 356 Z" fill="#1a1226"/>
+      <path d="M80 384 L160 356 L240 384 L240 420 L160 392 L80 420 Z" fill="#120c1c"/>
+      <!-- void face -->
+      <path d="M160 112 L210 168 L202 290 L160 350 L118 290 L110 168 Z" fill="#050308"/>
+      <circle class="visitor-eye" cx="140" cy="206" r="9" fill="#d8ccff"/>
+      <circle class="visitor-eye" cx="182" cy="206" r="9" fill="#d8ccff"/>
+      <circle cx="140" cy="206" r="16" fill="#d8ccff" opacity="0.22"/>
+      <circle cx="182" cy="206" r="16" fill="#d8ccff" opacity="0.22"/>
+    </g>
+  </svg>
+
+  <!-- ============ TITLE CARD ============ -->
+  <div id="titlecard">
+    <div class="title-word">MOODTYPE</div>
+    <div class="title-sub">a dynamic text-emotion dialogue system for narrative games</div>
+    <div class="title-scene">scene one &mdash; the candle wardens</div>
+    <div class="title-hint">click anywhere to begin &nbsp;&middot;&nbsp; voices on</div>
+  </div>
+
+  <!-- ============ DIALOGUE UI ============ -->
+  <div id="dialogue" class="hidden">
+    <div id="speakerName">Vesk</div>
+    <div id="dialogueText"></div>
+    <div id="advanceHint">&#9660;</div>
+  </div>
+
+  <div id="moodChip" class="hidden">
+    <span id="moodName">neutral</span>
+    <span id="moodDesc"></span>
+  </div>
+
+  <div id="controls">
+    <button id="btnAuto" title="auto-play">auto</button>
+    <button id="btnVoice" title="toggle voices" class="on">voices</button>
+    <button id="btnReplay" title="replay">replay</button>
+  </div>
+
+  <div id="credit">an original homage to <b>@JungleSilicon</b>&rsquo;s text-emotion demo &mdash; all art, story &amp; code original</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
